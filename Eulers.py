@@ -13,18 +13,17 @@ m_dry = 26200
 m_start = 525000 + m_payload
 
 
-dm_rate_1 = 2100  # Raket 1: Langsom forbrænding
-dm_rate_2 = 2100  # Raket 2: Hurtig forbrænding (større motor)
-
+dm_rate_1 = 2100  
+dm_rate_2 = 2100  
 
 x0 = 0
-n = 2500  # Øget lidt så vi kan se hele faldet
+n = 2500 
 delta_t = 0.1
 β = 1.957
 
 t = np.zeros(n)
 
-# Initialisering af arrays
+
 x = np.zeros(n);
 v = np.zeros(n);
 m = np.zeros(n)
@@ -47,7 +46,6 @@ for i in range(1, n):
 
     if m[i - 1] > m_dry:
         dm = dm_rate_1
-        # Sikrer at vi ikke bruger mere end der er tilbage i tanken
         if m[i - 1] - (dm * delta_t) < m_dry:
             dm = (m[i - 1] - m_dry) / delta_t  # Tøm resten
 
@@ -67,7 +65,7 @@ for i in range(1, n):
 
 
     acc_motor = løft / m[i - 1]
-    acc_tyngde = tyngde  # Dette er allerede en acceleration (g)
+    acc_tyngde = tyngde  
 
     a = acc_motor - acc_tyngde - luft
 
